@@ -21,19 +21,27 @@ extension HTTPClient {
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
         
+        var queryItems: [URLQueryItem] = []
         if let queryParams = endpoint.queryParams {
             queryParams.forEach { (key, value) in
-                urlComponents.queryItems?.append(URLQueryItem(name: key, value: value))
+                queryItems.append(URLQueryItem(name: key, value: value))
             }
+            
+            urlComponents.queryItems = queryItems
         }
         
         guard let url = urlComponents.url else {
             return .failure(.invalidURL)
         }
         
+        print(url)
+        
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method.rawValue
         request.allHTTPHeaderFields = endpoint.header
+        
+        print(request.url)
+        print(request)
 
         if let body = endpoint.body {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])

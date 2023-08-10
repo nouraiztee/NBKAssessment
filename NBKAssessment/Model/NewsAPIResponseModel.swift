@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 // MARK: - NewsAPIResponseModel
 struct NewsAPIResponseModel: Codable {
     let status: String
@@ -18,11 +19,10 @@ struct NewsAPIResponseModel: Codable {
 struct Article: Codable {
     let source: Source
     let author: String?
-    let title: String
-    let description: String?
+    let title, description: String
     let url: String
     let urlToImage: String
-    let publishedAt: Date
+    let publishedAt: String
     let content: String?
 }
 
@@ -31,3 +31,4 @@ struct Source: Codable {
     let id: String?
     let name: String
 }
+

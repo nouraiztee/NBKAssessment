@@ -8,11 +8,11 @@
 import Foundation
 
 protocol NewsServiceable {
-    func getTopHeadlines(country: String, category: String) async -> Result<NewsAPIResponseModel, RequestError>
+    func getTopHeadlines(country: String, category: String, pageNumber: Int) async -> Result<NewsAPIResponseModel, RequestError>
 }
 
 struct NewsService: HTTPClient, NewsServiceable {
-    func getTopHeadlines(country: String, category: String) async -> Result<NewsAPIResponseModel, RequestError> {
-        return await sendRequest(endpoint: NewsEndPoints.topHeadlines(country: country, category: category), responseModel: NewsAPIResponseModel.self)
+    func getTopHeadlines(country: String, category: String, pageNumber: Int) async -> Result<NewsAPIResponseModel, RequestError> {
+        return await sendRequest(endpoint: NewsEndPoints.topHeadlines(country: country, category: category, pageNumber: String(pageNumber)), responseModel: NewsAPIResponseModel.self)
     }
 }

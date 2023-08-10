@@ -8,13 +8,13 @@
 import Foundation
 
 enum NewsEndPoints {
-    case topHeadlines(country: String, category: String)
+    case topHeadlines(country: String, category: String, pageNumber: String)
 }
 
 extension NewsEndPoints: Endpoint {
     var path: String {
         switch self {
-        case .topHeadlines(_, _):
+        case .topHeadlines(_, _, _):
             return "/v2/top-headlines"
         }
     }
@@ -36,10 +36,12 @@ extension NewsEndPoints: Endpoint {
     
     var queryParams: [String : String]? {
         switch self {
-        case .topHeadlines(let country, let category):
+        case .topHeadlines(let country, let category, let pageNumber):
             var params = [
                 "country": country,
-                "category": category
+                "category": category,
+                "page": pageNumber,
+                "pageSize": "10"
             ]
             
             params["apiKey"] = "d91313341ac6451fb40110e7750d8c80"
