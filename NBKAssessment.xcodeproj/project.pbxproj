@@ -27,6 +27,7 @@
 		8FF3EAB42A83C3B40027FE2F /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF3EAB32A83C3B40027FE2F /* RequestError.swift */; };
 		8FF3EAB72A83C4670027FE2F /* NewsEndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF3EAB62A83C4670027FE2F /* NewsEndPoints.swift */; };
 		8FF3EABA2A83C8B10027FE2F /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF3EAB92A83C8B10027FE2F /* NewsService.swift */; };
+		8FF3EAC62A852DAD0027FE2F /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8FF3EAC52A852DAD0027FE2F /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FF3EAC62A852DAD0027FE2F /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +250,9 @@
 			dependencies = (
 			);
 			name = NBKAssessment;
+			packageProductDependencies = (
+				8FF3EAC52A852DAD0027FE2F /* SDWebImage */,
+			);
 			productName = NBKAssessment;
 			productReference = 8F16B7612A7BEF31000A99E5 /* NBKAssessment.app */;
 			productType = "com.apple.product-type.application";
@@ -320,6 +325,9 @@
 				Base,
 			);
 			mainGroup = 8F16B7582A7BEF31000A99E5;
+			packageReferences = (
+				8FF3EAC42A852DAD0027FE2F /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 8F16B7622A7BEF31000A99E5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -712,6 +720,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8FF3EAC42A852DAD0027FE2F /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8FF3EAC52A852DAD0027FE2F /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8FF3EAC42A852DAD0027FE2F /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8F16B7592A7BEF31000A99E5 /* Project object */;
 }

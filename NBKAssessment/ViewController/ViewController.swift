@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController {
 
@@ -46,6 +47,12 @@ extension ViewController: UITableViewDataSource {
         
         if let newsItem = viewModel.getNewsItemAt(index: indexPath.row) {
             cell.newsTitleLbl.text = newsItem.title
+            cell.timeSincePostedLbl.text = newsItem.publishedAt
+            cell.newsAuthorLbl.text = newsItem.author
+            
+            if let url = URL(string: newsItem.urlToImage ?? "") {
+                cell.newsThumbnail.sd_setImage(with: url)
+            }
         }
         
         return cell
@@ -58,6 +65,10 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if viewModel.isShowingSearchedNews {
+            return
+        }
+        
         if Int(viewModel.getTotalPages()) < viewModel.getCurrentPageNumber() {
             if indexPath.row == viewModel.getTotalNewsCount() {
                 Task {
@@ -77,6 +88,16 @@ extension ViewController: NewsListViewDelegate {
     
     func getNewsListFailed(error: RequestError) {
         print(error)
+    }
+    
+    func didSearchedNewsList() {
+        newsTableView.reloadData()
+    }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.searchNews(term: searchText)
     }
 }
 

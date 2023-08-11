@@ -10,10 +10,12 @@ import Foundation
 protocol NewsListViewDelegate {
     func didGetNewsList(list: [Article])
     func getNewsListFailed(error: RequestError)
+    func didSearchedNewsList()
 }
 
 protocol NewsListViewModelDelegate {
     func getNews(country: String, category: String, pageNumber: Int) async
+    func searchNews(term: String)
 }
 
 class NewsListViewModel {
@@ -22,16 +24,19 @@ class NewsListViewModel {
     var newsRespModel: NewsAPIResponseModel?
     var totalResults: Int?
     var articles: [Article]?
+    var searchedArticles: [Article]?
     
     var pageSize = 10.0
     var pageNumber = 1
+    
+    var isShowingSearchedNews = false
     
     init(networkService: NewsServiceable) {
         self.networkService = networkService
     }
     
     func getTotalNewsCount() -> Int {
-        newsRespModel?.totalResults ?? 0
+        isShowingSearchedNews == false ? newsRespModel?.totalResults ?? 0 : searchedArticles?.count ?? 0
     }
     
     func getTotalPages() -> Double {
@@ -39,7 +44,7 @@ class NewsListViewModel {
     }
     
     func getRowCount() -> Int {
-        articles?.count ?? 0
+        isShowingSearchedNews == false ? articles?.count ?? 0 : searchedArticles?.count ?? 0
     }
     
     func getCurrentPageNumber() -> Int {
@@ -47,7 +52,7 @@ class NewsListViewModel {
     }
     
     func getNewsItemAt(index: Int) -> Article? {
-        articles?[index] ?? nil
+        isShowingSearchedNews == false ? articles?[index] ?? nil : searchedArticles?[index] ?? nil
     }
 }
 
@@ -74,6 +79,24 @@ extension NewsListViewModel: NewsListViewModelDelegate {
                 viewDelegate?.getNewsListFailed(error: error)
                 break
             }
+        }
+    }
+    
+    func searchNews(term: String) {
+        if term.isEmpty {
+            isShowingSearchedNews = false
+            searchedArticles?.removeAll()
+            
+            viewDelegate?.didSearchedNewsList()
+        }else {
+            isShowingSearchedNews = true
+            searchedArticles?.removeAll()
+            
+            let filteredNewsItems = articles?.filter({$0.title?.lowercased().contains(term.lowercased()) ?? false})
+            
+            searchedArticles = filteredNewsItems
+            
+            viewDelegate?.didSearchedNewsList()
         }
     }
 }

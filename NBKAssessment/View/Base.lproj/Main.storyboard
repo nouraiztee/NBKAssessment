@@ -33,7 +33,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="aj2-Dm-VDj">
-                                <rect key="frame" x="0.0" y="159" width="393" height="659"/>
+                                <rect key="frame" x="8" y="159" width="377" height="693"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0CQ-bf-eGe">
                                 <rect key="frame" x="0.0" y="103" width="393" height="56"/>
@@ -44,13 +45,13 @@
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0CQ-bf-eGe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5aE-gR-bWt"/>
                             <constraint firstItem="0CQ-bf-eGe" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="APF-Eo-Zbo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="aj2-Dm-VDj" secondAttribute="bottom" id="DR2-bE-h0g"/>
-                            <constraint firstItem="aj2-Dm-VDj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SrI-9w-hjF"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aj2-Dm-VDj" secondAttribute="trailing" id="mhE-PC-4GT"/>
+                            <constraint firstAttribute="bottom" secondItem="aj2-Dm-VDj" secondAttribute="bottom" id="DR2-bE-h0g"/>
+                            <constraint firstItem="aj2-Dm-VDj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="SrI-9w-hjF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aj2-Dm-VDj" secondAttribute="trailing" constant="8" id="mhE-PC-4GT"/>
                             <constraint firstItem="aj2-Dm-VDj" firstAttribute="top" secondItem="0CQ-bf-eGe" secondAttribute="bottom" id="nw3-Md-8WB"/>
                             <constraint firstItem="0CQ-bf-eGe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o96-y0-81B"/>
                         </constraints>
